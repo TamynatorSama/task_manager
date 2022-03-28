@@ -1,32 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task/logic/state_manager.dart';
 import 'package:task/reuseable/task_card.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  double calc() {
-    int current = DateTime.now().hour;
-    double slider = ((current / 24) * 1);
-    return slider;
-  }
-
-  int calc1() {
-    int current = DateTime.now().hour;
-    int parse = ((current / 24) * 100).floor();
-    return parse;
-  }
-
-  @override
-  void initState() {
-    calc();
-    calc1();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +41,8 @@ class _HomeState extends State<Home> {
             )
           ],
         ),
-        Container(
+        Consumer<StateManager>(
+          builder: (context,value,child)=>Container(
           margin: const EdgeInsets.symmetric(vertical: 50),
           height: MediaQuery.of(context).size.height * 0.23,
           width: double.maxFinite,
@@ -121,7 +100,7 @@ class _HomeState extends State<Home> {
                                   startAngle: 0.0,
                                   endAngle: 2 * 3.142,
                                   //position for the progress
-                                  stops: [calc(), calc()],
+                                  stops: [value.calc(), value.calc()],
                                   center: Alignment.center,
                                   colors: [
                                     const Color.fromARGB(255, 235, 187, 125),
@@ -147,7 +126,7 @@ class _HomeState extends State<Home> {
                                   shape: BoxShape.circle,
                                   color: Color.fromRGBO(32, 75, 90, 1)),
                               child: Text(
-                                "${calc1()}%",
+                                "${value.calc1()}%",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
@@ -161,6 +140,8 @@ class _HomeState extends State<Home> {
                 ]),
           ),
         ),
+        ),
+        
         const Text(
           "Today's Schedule",
           style: TextStyle(

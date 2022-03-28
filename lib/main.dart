@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task/logic/state_manager.dart';
 import 'package:task/tabs/add_new.dart';
 import 'package:task/tabs/calender.dart';
 import 'package:task/tabs/home.dart';
@@ -19,23 +21,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: ChangeNotifierProvider<StateManager>(
+        create: (_) => StateManager(),
+        child: MyHomePage(),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
-    Key? key,
-  }) : super(key: key);
+class MyHomePage extends StatelessWidget {
+  MyHomePage({Key? key}) : super(key: key);
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _selectedindex = 0;
-  List icons = [
+  final List icons = [
     Icons.format_align_right,
     Icons.calendar_view_day_rounded,
     Icons.add,
@@ -46,31 +43,39 @@ class _MyHomePageState extends State<MyHomePage> {
     const Home(),
     const Calender(),
     const AddTask(),
-    const Center(child: Text("Organize",style: TextStyle(fontSize: 50),),),
-    const Center(child: Text("User",style: TextStyle(fontSize: 50),),)
+    const Center(
+      child: Text(
+        "Organize",
+        style: TextStyle(fontSize: 50),
+      ),
+    ),
+    const Center(
+      child: Text(
+        "User",
+        style: TextStyle(fontSize: 50),
+      ),
+    )
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:tab[_selectedindex],
+        body: tab[Provider.of<StateManager>(context).selectedindex],
         bottomNavigationBar: Row(
-      children: List.generate(
-          icons.length,
-          (index) => Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: bottomItems(icons[index], index),
-              ))),
-    ));
+          children: List.generate(
+              icons.length,
+              (index) => Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: bottomItems(icons[index], index, context),
+                  ))),
+        ));
   }
-
-  Widget bottomItems(IconData display, plus) {
+//bottom navigation item and also takes care of the click event and ui changes
+  Widget bottomItems(IconData display, plus, context) {
     return GestureDetector(
       onTap: () {
-           setState(() {
-          _selectedindex = plus;
-        });
+        Provider.of<StateManager>(context,listen: false).changeIndex(plus);
       },
       child: Container(
         height: plus == 2 ? 70 : 50,
@@ -78,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
           display,
           color: plus == 2
               ? Colors.white
-              : plus == _selectedindex
+              : plus == Provider.of<StateManager>(context,listen: false).selectedindex
                   ? const Color.fromRGBO(32, 75, 90, 1)
                   : Colors.grey,
         ),
