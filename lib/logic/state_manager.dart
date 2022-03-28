@@ -1,10 +1,23 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class StateManager extends ChangeNotifier {
-
   int selectedindex = 0;
-  int parse = 0;
 
+  DateTime current = DateTime.now();
+  DateTime begin = DateTime.now();
+  DateTime end = DateTime.now();
+
+  TimeOfDay start = const TimeOfDay(hour: 12, minute: 12);
+  TimeOfDay endTime = const TimeOfDay(hour: 23, minute: 59);
+Future startTime(context) async {
+    var initialTime = TimeOfDay(hour: current.hour, minute: current.minute);
+
+    var newTime =
+        await showTimePicker(context: context, initialTime: initialTime);
+    if (newTime == null) return;
+      start = newTime  ;
+    notifyListeners();
+  }
   changeIndex(int index) {
     selectedindex = index;
     notifyListeners();
@@ -21,4 +34,54 @@ class StateManager extends ChangeNotifier {
     double slider = ((current / 24) * 1);
     return slider;
   }
+
+// Begin date picker function
+  Future beginDatePicker(BuildContext context) async {
+    DateTime current = DateTime.now();
+
+    var newDAte = await showDatePicker(
+        context: context,
+        initialDate: current,
+        firstDate: DateTime(current.year - 10),
+        lastDate: DateTime(current.year + 10));
+    if (newDAte == null) return null;
+    begin = newDAte;
+    notifyListeners();
+  }
+
+  // End date picker function
+  Future endDatePicker(BuildContext context) async {
+    DateTime current = DateTime.now();
+
+    var newDAte = await showDatePicker(
+        context: context,
+        initialDate: current,
+        firstDate: DateTime(current.year - 10),
+        lastDate: DateTime(current.year + 10));
+    if (newDAte == null) return null;
+    end = newDAte;
+    notifyListeners();
+  }
+
+  //start time picker function
+  Future startTimePicker(context) async {
+    var initialTime = TimeOfDay(hour: current.hour, minute: current.minute);
+
+    var newTime =
+        await showTimePicker(context: context, initialTime: initialTime);
+    if (newTime == null) return;
+      start = newTime  ;
+    notifyListeners();
+  }
+  //end time picker function
+  Future endTimePicker(context) async {
+    var initialTime = TimeOfDay(hour: current.hour, minute: current.minute);
+
+    var newTime =
+        await showTimePicker(context: context, initialTime: initialTime);
+    if (newTime == null) return;
+      start = newTime  ;
+    notifyListeners();
+  }
+
 }

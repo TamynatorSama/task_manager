@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -64,7 +62,7 @@ class TaskCard extends StatelessWidget {
                   ),
                   height: 80,
                   child: SvgPicture.asset(
-                    "${illustration}",
+                    "$illustration",
                     width: double.infinity,
                   ),
                 )

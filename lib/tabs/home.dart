@@ -153,9 +153,9 @@ class Home extends StatelessWidget {
           child: Container(
             child: Wrap(
               children: [
-                TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00"),
-                TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00",illustration: "assets/images/one3.svg",),
-                TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00"),
+                const TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00"),
+                const TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00",illustration: "assets/images/one3.svg",),
+                const TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00"),
                 TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00",function:(){}),
               ],
               ),
