@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:task/tabs/add_new.dart';
 import 'package:task/tabs/calender.dart';
 import 'package:task/tabs/home.dart';
-import 'package:flutter/services.dart';
 
 void main() {
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
   runApp(const MyApp());
 }
 
@@ -70,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget bottomItems(IconData display, plus) {
     return GestureDetector(
       onTap: () {
-        setState(() {
+           setState(() {
           _selectedindex = plus;
         });
       },

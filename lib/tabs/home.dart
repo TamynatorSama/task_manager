@@ -109,16 +109,18 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(25.0),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0,25,0,25 ),
                       child: Stack(
+                        alignment: Alignment.center,
                         children: [
+                          //progress indicator implementation
                           ShaderMask(
                             shaderCallback: (rect) {
                               return SweepGradient(
                                   startAngle: 0.0,
                                   endAngle: 2 * 3.142,
+                                  //position for the progress
                                   stops: [calc(), calc()],
                                   center: Alignment.center,
                                   colors: [
@@ -126,14 +128,16 @@ class _HomeState extends State<Home> {
                                     Colors.white.withOpacity(0.2)
                                   ]).createShader(rect);
                             },
+                            //the overlay that actually display the progress
                             child: Container(
-                              width: 150,
-                              height: 150,
+                              width: 130,
+                              height: 130,
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color.fromARGB(255, 243, 202, 148)),
                             ),
                           ),
+                          //this is for the inner circle of the progress indicator
                           Center(
                             child: Container(
                               alignment: Alignment.center,
@@ -154,7 +158,6 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                     ),
-                  ),
                 ]),
           ),
         ),
@@ -165,27 +168,18 @@ class _HomeState extends State<Home> {
               color: Color.fromRGBO(32, 75, 90, 1),
               fontWeight: FontWeight.bold),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: SingleChildScrollView(
-            child: Table(
-              border: null,
-              defaultVerticalAlignment: TableCellVerticalAlignment.top,
-              children: const [
-                TableRow(children: [
-                  TaskCard(
-                      title: "Meeting with developers",
-                      timeRange: "7:00 - 8:00"),
-                  TaskCard(
-                    title: "Meeting with developers",
-                    timeRange: "7:00 - 8:00",
-                    illustration: "assets/images/one3.svg",
-                  )
-                ]),
+        Expanded(
+          child: Container(
+            child: Wrap(
+              children: [
+                TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00"),
+                TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00",illustration: "assets/images/one3.svg",),
+                TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00"),
+                TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00",function:(){}),
               ],
-            ),
+              ),
           ),
-        )
+          ),
       ]),
     );
   }
