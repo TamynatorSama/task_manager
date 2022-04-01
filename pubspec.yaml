@@ -39,6 +39,7 @@ dependencies:
   table_calendar: ^3.0.5
   sqflite: ^2.0.2
   path: ^1.8.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
