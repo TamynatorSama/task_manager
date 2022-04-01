@@ -10,7 +10,7 @@ class StateManager extends ChangeNotifier {
   TimeOfDay start = const TimeOfDay(hour: 12, minute: 12);
   TimeOfDay endTime = const TimeOfDay(hour: 23, minute: 59);
 
-  String selectedColor = "0xff";
+  String selectedColor = "ffffff";
 
   Future startTime(context) async {
     var initialTime = TimeOfDay(hour: current.hour, minute: current.minute);
@@ -23,7 +23,12 @@ class StateManager extends ChangeNotifier {
   }
 
   changeIndex(int index) {
-    selectedindex = index;
+    if (index == 2) {
+      selectedindex = selectedindex;
+    }
+    else{
+      selectedindex = index;
+    }
     notifyListeners();
   }
 

@@ -18,7 +18,7 @@ class AllTask extends StatelessWidget {
       child: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 40),
+            padding: EdgeInsets.only(top: 40, bottom: 20),
             child: Text(
               "Tasks",
               style: TextStyle(
@@ -41,20 +41,25 @@ class AllTask extends StatelessWidget {
                   );
                 } else {
                   var list = snapshot.data as List;
-                  if (list.length == 0)
-                    return Center(
+                  if (list.isEmpty) {
+                    return const Center(
                       child: Text("you do not have any task scheduled"),
                     );
+                  }
                   return Expanded(
                       child: ListView.builder(
                           itemCount: list.length,
                           itemBuilder: (context, index) {
                             return AllTaskCard(
-                                title: list[index].title,
-                                timeRange:
-                                    list[index].begin + " - " + list[index].end,
-                                color: list[index].color,
-                                description: list[index].description);
+                              title: list[index].title,
+                              timeRange:
+                                  list[index].begin + " - " + list[index].end,
+                              color: list[index].color,
+                              description: list[index].description,
+                              delete: () {
+                                DatabaseProvider.db.delete(list[index].id);
+                              },
+                            );
                           }));
                 }
               }),

@@ -1,8 +1,9 @@
+import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:task/logic/task_model.dart';
 
-class DatabaseProvider {
+class DatabaseProvider extends ChangeNotifier {
   DatabaseProvider._();
   static final DatabaseProvider db = DatabaseProvider._();
   static Database? _database;
@@ -39,6 +40,7 @@ class DatabaseProvider {
 
   Future<int> addNewTask(Task newtask) async {
     Database db = await database;
+    notifyListeners();
     return await db.insert("tasks", newtask.toJson(),
         conflictAlgorithm: ConflictAlgorithm.abort);
   }
@@ -62,8 +64,6 @@ class DatabaseProvider {
 
   Future<void> delete(int id) async {
     var db = await database;
-
     await db.delete('tasks', where: 'id = ?', whereArgs: [id]);
-    print("object");
   }
 }

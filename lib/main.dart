@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:task/logic/state_manager.dart';
 import 'package:task/tabs/add_new.dart';
@@ -43,7 +44,7 @@ class MyHomePage extends StatelessWidget {
   final tab = [
     const Home(),
     const Calender(),
-    const AddTask(),
+    AddTask(),
     const AllTask(),
     const Center(
       child: Text(
@@ -71,7 +72,8 @@ class MyHomePage extends StatelessWidget {
   Widget bottomItems(IconData display, plus, context) {
     return GestureDetector(
       onTap: () {
-        Provider.of<StateManager>(context,listen: false).changeIndex(plus);
+        plus == 2 ?Navigator.push(context, MaterialPageRoute(builder: (context)=>ChangeNotifierProvider<StateManager>(create: (_)=>StateManager(),child: AddTask(),)))
+        :Provider.of<StateManager>(context,listen: false).changeIndex(plus);
       },
       child: Container(
         height: plus == 2 ? 70 : 50,
