@@ -150,7 +150,7 @@ class Home extends StatelessWidget {
               fontWeight: FontWeight.bold),
         ),
         Expanded(
-          child: Container(
+          child: SizedBox(
             child: Wrap(
               children: [
                 const TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00"),

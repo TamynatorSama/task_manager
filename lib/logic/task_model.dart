@@ -1,13 +1,14 @@
+import 'package:flutter/material.dart';
+
 const String tableName = "Taskmanager";
 
 class Task {
   final int? id;
   final String title;
-  final DateTime begin;
-  final DateTime end;
+  final String begin;
+  final String end;
   final String description;
   final String color;
-  final String? illustration;
 
   Task(
       {this.id,
@@ -15,8 +16,7 @@ class Task {
       required this.begin,
       required this.end,
       required this.description,
-      required this.color,
-      this.illustration});
+      required this.color});
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -24,7 +24,14 @@ class Task {
         "begin": begin,
         "end": end,
         "description": description,
-        "color" : color,
-        "illustration" : illustration
+        "color": color,
       };
+   factory Task.fromJson(Map<String,dynamic>json)=>Task(
+    id: json["id"] ,
+    title: json["title"],
+    begin: json["begin"],
+    end: json["end"],
+    description: json["description"],
+    color: json["color"]
+  );
 }

@@ -9,15 +9,19 @@ class StateManager extends ChangeNotifier {
 
   TimeOfDay start = const TimeOfDay(hour: 12, minute: 12);
   TimeOfDay endTime = const TimeOfDay(hour: 23, minute: 59);
-Future startTime(context) async {
+
+  String selectedColor = "0xff";
+
+  Future startTime(context) async {
     var initialTime = TimeOfDay(hour: current.hour, minute: current.minute);
 
     var newTime =
         await showTimePicker(context: context, initialTime: initialTime);
     if (newTime == null) return;
-      start = newTime  ;
+    start = newTime;
     notifyListeners();
   }
+
   changeIndex(int index) {
     selectedindex = index;
     notifyListeners();
@@ -46,6 +50,12 @@ Future startTime(context) async {
         lastDate: DateTime(current.year + 10));
     if (newDAte == null) return null;
     begin = newDAte;
+    var initialTime = TimeOfDay(hour: current.hour, minute: current.minute);
+
+    var newTime =
+        await showTimePicker(context: context, initialTime: initialTime);
+    if (newTime == null) return;
+    start = newTime;
     notifyListeners();
   }
 
@@ -60,28 +70,18 @@ Future startTime(context) async {
         lastDate: DateTime(current.year + 10));
     if (newDAte == null) return null;
     end = newDAte;
-    notifyListeners();
-  }
-
-  //start time picker function
-  Future startTimePicker(context) async {
     var initialTime = TimeOfDay(hour: current.hour, minute: current.minute);
 
     var newTime =
         await showTimePicker(context: context, initialTime: initialTime);
     if (newTime == null) return;
-      start = newTime  ;
-    notifyListeners();
-  }
-  //end time picker function
-  Future endTimePicker(context) async {
-    var initialTime = TimeOfDay(hour: current.hour, minute: current.minute);
-
-    var newTime =
-        await showTimePicker(context: context, initialTime: initialTime);
-    if (newTime == null) return;
-      start = newTime  ;
+    endTime = newTime;
     notifyListeners();
   }
 
+  // color changer
+  selectColor(String color) {
+    selectedColor = color;
+    notifyListeners();
+  }
 }

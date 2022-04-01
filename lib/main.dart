@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task/logic/state_manager.dart';
 import 'package:task/tabs/add_new.dart';
+import 'package:task/tabs/all_task.dart';
 import 'package:task/tabs/calender.dart';
 import 'package:task/tabs/home.dart';
 
@@ -43,12 +44,7 @@ class MyHomePage extends StatelessWidget {
     const Home(),
     const Calender(),
     const AddTask(),
-    const Center(
-      child: Text(
-        "Organize",
-        style: TextStyle(fontSize: 50),
-      ),
-    ),
+    const AllTask(),
     const Center(
       child: Text(
         "User",
