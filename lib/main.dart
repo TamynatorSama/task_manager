@@ -5,6 +5,7 @@ import 'package:task/tabs/add_new.dart';
 import 'package:task/tabs/all_task.dart';
 import 'package:task/tabs/calender.dart';
 import 'package:task/tabs/home.dart';
+import 'package:task/tabs/settings_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,19 +39,14 @@ class MyHomePage extends StatelessWidget {
     Icons.calendar_view_day_rounded,
     Icons.add,
     Icons.analytics,
-    Icons.person
+    Icons.settings
   ];
   final tab = [
     const Home(),
     const Calender(),
     AddTask(),
     const AllTask(),
-    const Center(
-      child: Text(
-        "User",
-        style: TextStyle(fontSize: 50),
-      ),
-    )
+    const SettingsPage()
   ];
 
   @override
