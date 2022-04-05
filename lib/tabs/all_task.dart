@@ -57,6 +57,7 @@ class AllTask extends StatelessWidget {
                               color: list[index].color,
                               description: list[index].description,
                               delete: () {
+                                // showDialog(context: context, builder: (ctx)=>AlertDialog());
                                 DatabaseProvider.db.delete(list[index].id);
                               },
                             );

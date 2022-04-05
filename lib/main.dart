@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:task/logic/state_manager.dart';
 import 'package:task/tabs/add_new.dart';
@@ -68,12 +67,21 @@ class MyHomePage extends StatelessWidget {
                   ))),
         ));
   }
+
 //bottom navigation item and also takes care of the click event and ui changes
   Widget bottomItems(IconData display, plus, context) {
     return GestureDetector(
       onTap: () {
-        plus == 2 ?Navigator.push(context, MaterialPageRoute(builder: (context)=>ChangeNotifierProvider<StateManager>(create: (_)=>StateManager(),child: AddTask(),)))
-        :Provider.of<StateManager>(context,listen: false).changeIndex(plus);
+        plus == 2
+            ? Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider<StateManager>(
+                          create: (_) => StateManager(),
+                          child: AddTask(),
+                        )))
+            : Provider.of<StateManager>(context, listen: false)
+                .changeIndex(plus);
       },
       child: Container(
         height: plus == 2 ? 70 : 50,
@@ -81,7 +89,9 @@ class MyHomePage extends StatelessWidget {
           display,
           color: plus == 2
               ? Colors.white
-              : plus == Provider.of<StateManager>(context,listen: false).selectedindex
+              : plus ==
+                      Provider.of<StateManager>(context, listen: false)
+                          .selectedindex
                   ? const Color.fromRGBO(32, 75, 90, 1)
                   : Colors.grey,
         ),

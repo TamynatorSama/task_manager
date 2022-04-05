@@ -40,7 +40,7 @@ class AddTask extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        "Create a Task",
+                        "Create Task",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 30,

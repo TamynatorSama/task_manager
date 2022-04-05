@@ -40,7 +40,6 @@ class DatabaseProvider extends ChangeNotifier {
 
   Future<int> addNewTask(Task newtask) async {
     Database db = await database;
-    notifyListeners();
     return await db.insert("tasks", newtask.toJson(),
         conflictAlgorithm: ConflictAlgorithm.abort);
   }
@@ -56,6 +55,7 @@ class DatabaseProvider extends ChangeNotifier {
         var taskeach = Task.fromJson(task);
         taskList.add(taskeach);
       });
+      notifyListeners();
       return taskList;
       // var resultMAp = result.toList();
       // return resultMAp.isNotEmpty ? resultMAp : Null;

@@ -109,8 +109,8 @@ class Home extends StatelessWidget {
                             },
                             //the overlay that actually display the progress
                             child: Container(
-                              width: 130,
-                              height: 130,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              height: MediaQuery.of(context).size.width * 0.3,
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color.fromARGB(255, 243, 202, 148)),
@@ -120,8 +120,8 @@ class Home extends StatelessWidget {
                           Center(
                             child: Container(
                               alignment: Alignment.center,
-                              width: 70,
-                              height: 70,
+                              width: MediaQuery.of(context).size.width * 0.18,
+                              height: MediaQuery.of(context).size.width * 0.18,
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color.fromRGBO(32, 75, 90, 1)),

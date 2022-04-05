@@ -1,97 +1,154 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:task/logic/db_helper.dart';
+import 'package:task/logic/task_model.dart';
+import 'package:task/reuseable/today.dart';
 
 class Calender extends StatelessWidget {
   const Calender({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Future<List<Task>> getTask() async {
+      final taskList = await DatabaseProvider.db.getTasks();
+      List<Task> todaysList = [];
+      taskList.forEach((item) {
+        if (item.begin
+            .contains(DateFormat('EEE, d MMM').format(DateTime.now()))) {
+          todaysList.add(item);
+        }
+      });
+      return todaysList;
+    }
+
+    var cont = MediaQuery.of(context).size;
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                width: double.maxFinite,
-                height: MediaQuery.of(context).size.height * 0.43,
-                decoration: BoxDecoration(
-                  color: const Color.fromRGBO(32, 75, 90, 1),
-                  borderRadius: BorderRadius.circular(30)
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    TableCalendar(
-                  daysOfWeekStyle: const DaysOfWeekStyle(
-                    weekendStyle: TextStyle(
-                      color: Colors.white,
-                    ),
-                    weekdayStyle: TextStyle(
-                      color: Colors.white
-                    ),
-                  ),
-                  daysOfWeekHeight: MediaQuery.of(context).size.height * 0.08,
-              focusedDay: DateTime.utc(DateTime.now().year,DateTime.now().month,DateTime.now().day),
-              firstDay: DateTime.utc(1972,1,1),
-              lastDay: DateTime.utc(2430,12,31),
-              calendarFormat: CalendarFormat.week,
-              headerStyle: const HeaderStyle(
-                leftChevronIcon: Icon(Icons.chevron_left,color: Colors.white,size: 35),
-                rightChevronIcon: Icon(Icons.chevron_right,color: Colors.white,size: 35,),
-                formatButtonVisible: false,
-                titleCentered: true,
-                titleTextStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18
-                ),
+      child: Stack(children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.25,
               ),
-              calendarStyle: CalendarStyle(
-                defaultTextStyle: const TextStyle(
-                  color: Colors.white
-                ),
-                weekendTextStyle: const TextStyle(
-                  color: Colors.white,
-                ),
-                todayTextStyle: const TextStyle(
-                  fontWeight:FontWeight.bold,
-                  color: Colors.white70
-                ),
-                todayDecoration: BoxDecoration(
-                  color: const Color.fromRGBO(241, 175, 87, 1),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      blurRadius: 6,
-                      spreadRadius: 3,
-                      offset: const Offset(0, 1)
-                    )
-                  ]
-                )
-              ),
-              ),
-              InkWell(
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 70,
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(241, 175, 87, 1), 
-                    borderRadius: BorderRadius.circular(50)
-                    ),
-                    child: const Text("Set Remainder",style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600),),
-                ),
-              )
-                  ],
-                )
-              ),
-            ]
+              child: FutureBuilder(
+                  future: getTask(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      var usableList = snapshot.data as List;
+                      if (usableList.isEmpty) {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * 0.2),
+                          child: Center(
+                              child: Text("You don't have any task today",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black.withOpacity(0.6)))),
+                        );
+                      } else {
+                        return Column(
+                          children: List.generate(
+                              usableList.length,
+                              (index) => TodayCard(
+                                  color: usableList[index].color,
+                                  title: usableList[index].title,
+                                  description: usableList[index].description,
+                                  timeRange: usableList[index].begin +
+                                      " - " +
+                                      usableList[index].end,
+                                  delete: () {
+                                    DatabaseProvider.db
+                                        .delete(usableList[index].id);
+                                  })),
+                        );
+                      }
+                    } else {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          (Center(
+                              child: Text("You don't have any task today"))),
+                        ],
+                      );
+                    }
+                  }),
             ),
+          ),
         ),
-      ),
+        ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: 4,
+              sigmaY: 4,
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              width: double.maxFinite,
+              height: MediaQuery.of(context).size.height * 0.25,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.1),
+              ),
+              child: TableCalendar(
+                daysOfWeekStyle: DaysOfWeekStyle(
+                  weekendStyle: TextStyle(
+                      color: Colors.black.withOpacity(0.8),
+                      fontWeight: FontWeight.bold),
+                  weekdayStyle: TextStyle(color: Colors.black.withOpacity(0.8)),
+                ),
+                daysOfWeekHeight: MediaQuery.of(context).size.height * 0.02,
+                focusedDay: DateTime.utc(DateTime.now().year,
+                    DateTime.now().month, DateTime.now().day),
+                firstDay: DateTime.utc(1972, 1, 1),
+                lastDay: DateTime.utc(2430, 12, 31),
+                calendarFormat: CalendarFormat.week,
+                headerStyle: HeaderStyle(
+                  headerMargin: const EdgeInsets.only(bottom: 10),
+                  headerPadding: EdgeInsets.fromLTRB(0, 10, 0, 20),
+                  leftChevronIcon: Icon(Icons.chevron_left,
+                      color: Colors.black.withOpacity(0.7), size: 45),
+                  rightChevronIcon: Icon(
+                    Icons.chevron_right,
+                    color: Colors.black.withOpacity(0.7),
+                    size: 45,
+                  ),
+                  formatButtonVisible: false,
+                  titleCentered: true,
+                  titleTextStyle: TextStyle(
+                      color: Colors.black.withOpacity(0.7),
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24),
+                ),
+                calendarStyle: CalendarStyle(
+                    defaultTextStyle:
+                        TextStyle(color: Colors.black.withOpacity(0.7)),
+                    weekendTextStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black.withOpacity(0.7),
+                    ),
+                    todayTextStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black.withOpacity(0.7)),
+                    todayDecoration: BoxDecoration(
+                        color: const Color.fromRGBO(241, 175, 87, 1),
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              blurRadius: 6,
+                              spreadRadius: 3,
+                              offset: const Offset(0, 1))
+                        ])),
+              ),
+            ),
+          ),
+        ),
+      ]),
     );
   }
 }
