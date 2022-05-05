@@ -2,6 +2,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:provider/provider.dart';
+import 'package:task/logic/db_helper.dart';
+import 'package:task/logic/state_manager.dart';
+import 'package:task/tabs/settings:level_page.dart';
+// import 'settings:level_page.dart';
 //color: Color(0xff204B5A)
 //Color.fromRGBO(241, 175, 87, 1)
 
@@ -16,7 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     var items = ["12hrs", "24hrs"];
-    String dropdownValue = items[0];
+    String dropdownValue = items[1];
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -93,11 +98,11 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   //Slider should be here
                   // ignore: avoid_unnecessary_containers
-                  Container(
-                    child: const Icon(
-                      Icons.radio_button_checked_outlined,
-                      color: Color(0xff204B5A),
-                    ),
+                  Switch(
+                    splashRadius: 72,
+                    value: Provider.of<StateManager>(context).darkModeValue,
+                    onChanged: Provider.of<StateManager>(context, listen: false)
+                        .toggleSwitch(),
                   )
                 ],
               ),
@@ -114,33 +119,39 @@ class _SettingsPageState extends State<SettingsPage> {
             //Space above level color
             const Padding(padding: EdgeInsets.only(bottom: 20)),
             //Theme: Level color
-            SizedBox(
-              height: 50,
-              child: Row(
-                children: const [
-                  //Level color icon
-                  Icon(FontAwesome5.paint_roller,
-                      color: Color.fromARGB(146, 0, 0, 0)),
-                  //Space behind level color
-                  SizedBox(
-                    width: 20,
-                  ),
-                  //Level color text
-                  Text(
-                    "Level Color",
-                    style: TextStyle(
-                        fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
-                  ),
-                  //Space in front of level color
-                  SizedBox(
-                    width: 173,
-                  ),
-                  //Forward arow icon
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Color.fromARGB(136, 241, 174, 87),
-                  )
-                ],
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => const LevelPage()));
+              },
+              child: SizedBox(
+                height: 50,
+                child: Row(
+                  children: const [
+                    //Level color icon
+                    Icon(FontAwesome5.paint_roller,
+                        color: Color.fromARGB(146, 0, 0, 0)),
+                    //Space behind level color
+                    SizedBox(
+                      width: 20,
+                    ),
+                    //Level color text
+                    Text(
+                      "Level Color",
+                      style: TextStyle(
+                          fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
+                    ),
+                    //Space in front of level color
+                    SizedBox(
+                      width: 173,
+                    ),
+                    //Forward arow icon
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Color.fromARGB(136, 241, 174, 87),
+                    )
+                  ],
+                ),
               ),
             ),
             //Theme: Sound
@@ -288,5 +299,6 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       )),
     );
+    
   }
 }

@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class StateManager extends ChangeNotifier {
+  bool darkModeValue = true;
+  toggleSwitch() {
+    darkModeValue = !darkModeValue;
+    notifyListeners();
+  }
+
   int selectedindex = 0;
 
   DateTime current = DateTime.now();
@@ -25,8 +31,7 @@ class StateManager extends ChangeNotifier {
   changeIndex(int index) {
     if (index == 2) {
       selectedindex = selectedindex;
-    }
-    else{
+    } else {
       selectedindex = index;
     }
     notifyListeners();
