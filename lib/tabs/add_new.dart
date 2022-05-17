@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -7,10 +8,19 @@ import 'package:task/logic/task_model.dart';
 import 'package:task/reuseable/label.dart';
 import 'package:task/reuseable/levels.dart';
 
-class AddTask extends StatelessWidget {
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
+class AddTask extends StatefulWidget {
   AddTask({Key? key}) : super(key: key);
+
+  @override
+  State<AddTask> createState() => _AddTaskState();
+}
+
+class _AddTaskState extends State<AddTask> {
+  final TextEditingController _titleController = TextEditingController();
+
+  final TextEditingController _descriptionController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -69,27 +79,48 @@ class AddTask extends StatelessWidget {
             //Title and its input space
 
             SizedBox(
-              child: Column(children: [
-                Container(
-                    padding: const EdgeInsets.only(top: 20, bottom: 9),
-                    alignment: Alignment.topLeft,
-                    child: const LabelText(text: "Title")),
-                TextField(
-                  controller: _titleController,
-                  decoration: const InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(12),
-                            bottom: Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.grey)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(12),
-                            bottom: Radius.circular(12)),
-                        borderSide: BorderSide(width: 3, color: Colors.black)),
-                  ),
-                )
-              ]),
+              child: Form(
+                key: _formKey,
+                child: Column(children: [
+                  Container(
+                      padding: const EdgeInsets.only(top: 20, bottom: 9),
+                      alignment: Alignment.topLeft,
+                      child: const LabelText(text: "Title")),
+                  TextFormField(
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                        letterSpacing: 2),
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      errorStyle: TextStyle(color: Colors.red.withOpacity(0.7)),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.vertical(
+                              top: Radius.circular(12),
+                              bottom: Radius.circular(12)),
+                          borderSide:
+                              BorderSide(color: Colors.red.withOpacity(0.7))),
+                      enabledBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(12),
+                              bottom: Radius.circular(12)),
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(12),
+                              bottom: Radius.circular(12)),
+                          borderSide: BorderSide(width: 1, color: Colors.grey)),
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return "please enter Title";
+                      } else {
+                        return null;
+                      }
+                    },
+                  )
+                ]),
+              ),
             ),
 
             //Levels
@@ -256,7 +287,6 @@ class AddTask extends StatelessWidget {
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           letterSpacing: 1.5),
-                      // controller: _titleController,
                     ),
                   )
                 ],
@@ -264,19 +294,18 @@ class AddTask extends StatelessWidget {
             ),
             //Add Button
             GestureDetector(
-              onTap: () async{
-                DatabaseProvider.db.delete(3);
-                
+              onTap: () async {
+                if (_formKey.currentState!.validate()) {
                   Task newTask = Task(
                     title: _titleController.text,
-                    begin:
-                        DateFormat('EEE, d MMM, h:mma').format(current.begin),
-                    end: DateFormat('EEE, d MMM, h:mma').format(current.end),
+                    begin: DateFormat('d MMM, h:mm a').format(current.begin),
+                    end: DateFormat('d MMM, h:mm a').format(current.end),
                     description: _descriptionController.text,
                     color: current.selectedColor,
                   );
-                DatabaseProvider.db.addNewTask(newTask);
-                Navigator.pop(context);
+                  DatabaseProvider.db.addNewTask(newTask);
+                  Navigator.pop(context);
+                }
               },
               child: Container(
                 alignment: Alignment.center,

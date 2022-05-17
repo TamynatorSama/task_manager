@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:task/logic/db_helper.dart';
 import 'package:task/logic/task_model.dart';
 import 'package:task/reuseable/all_task_card.dart';
 
-class AllTask extends StatelessWidget {
+class AllTask extends StatefulWidget{
   const AllTask({Key? key}) : super(key: key);
 
+  @override
+  State<AllTask> createState() => _AllTaskState();
+}
+
+class _AllTaskState extends State<AllTask> {
   @override
   Widget build(BuildContext context) {
     Future<List<Task>> getTask() async {
@@ -36,15 +42,29 @@ class AllTask extends StatelessWidget {
                   );
                 }
                 if (snapshot.data == null) {
-                  return const Center(
-                    child: Text("you do not have any task scheduled"),
-                  );
+                  return Padding(
+                          padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * 0.2),
+                          child: Center(
+                              child: Text("You don't have any task today",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black.withOpacity(0.6)))),
+                        );
                 } else {
                   var list = snapshot.data as List;
                   if (list.isEmpty) {
-                    return const Center(
-                      child: Text("you do not have any task scheduled"),
-                    );
+                    return Padding(
+                          padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * 0.2),
+                          child: Center(
+                              child: Text("You don't have any task today",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black.withOpacity(0.6)))),
+                        );
                   }
                   return Expanded(
                       child: ListView.builder(
@@ -59,6 +79,9 @@ class AllTask extends StatelessWidget {
                               delete: () {
                                 // showDialog(context: context, builder: (ctx)=>AlertDialog());
                                 DatabaseProvider.db.delete(list[index].id);
+                                setState(() {
+                                  
+                                });
                               },
                             );
                           }));

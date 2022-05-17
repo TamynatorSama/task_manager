@@ -31,9 +31,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   final List icons = [
     Icons.format_align_right,
     Icons.calendar_view_day_rounded,
@@ -41,9 +46,10 @@ class MyHomePage extends StatelessWidget {
     Icons.analytics,
     Icons.settings
   ];
+
   final tab = [
     const Home(),
-    const Calender(),
+    Calender(),
     AddTask(),
     const AllTask(),
     const SettingsPage()
@@ -53,14 +59,17 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: tab[Provider.of<StateManager>(context).selectedindex],
-        bottomNavigationBar: Row(
-          children: List.generate(
-              icons.length,
-              (index) => Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: bottomItems(icons[index], index, context),
-                  ))),
+        bottomNavigationBar: Container(
+          color: Colors.white,
+          child: Row(
+            children: List.generate(
+                icons.length,
+                (index) => Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: bottomItems(icons[index], index, context),
+                    ))),
+          ),
         ));
   }
 
@@ -69,13 +78,7 @@ class MyHomePage extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         plus == 2
-            ? Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ChangeNotifierProvider<StateManager>(
-                          create: (_) => StateManager(),
-                          child: AddTask(),
-                        )))
+            ? Navigator.of(context).push(_createRoute()).then((value) => setState((){}))
             : Provider.of<StateManager>(context, listen: false)
                 .changeIndex(plus);
       },
@@ -103,3 +106,26 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    transitionDuration: const Duration(milliseconds: 1000),
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          ChangeNotifierProvider<StateManager>(
+            create: (_) => StateManager(),
+            child: AddTask(),
+          ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.elasticInOut;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      });
+}
+// myth recycle ceiling chalk camp stone curve wait silly blade inflict claw

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class StateManager extends ChangeNotifier {
   int selectedindex = 0;
+  bool owk = false;
 
   DateTime current = DateTime.now();
   DateTime begin = DateTime.now();
@@ -25,8 +26,7 @@ class StateManager extends ChangeNotifier {
   changeIndex(int index) {
     if (index == 2) {
       selectedindex = selectedindex;
-    }
-    else{
+    } else {
       selectedindex = index;
     }
     notifyListeners();
@@ -87,6 +87,11 @@ class StateManager extends ChangeNotifier {
   // color changer
   selectColor(String color) {
     selectedColor = color;
+    notifyListeners();
+  }
+
+  change() {
+    owk = !owk;
     notifyListeners();
   }
 }

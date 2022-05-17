@@ -1,6 +1,4 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 //color: Color(0xff204B5A)
 //Color.fromRGBO(241, 175, 87, 1)
