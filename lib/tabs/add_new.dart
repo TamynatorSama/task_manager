@@ -247,7 +247,7 @@ class AddTask extends StatelessWidget {
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
                       decoration: const InputDecoration(
-                          hintText: "add something ...",
+                          hintText: "Add Something ...",
                           hintStyle: TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 14),
                           border: InputBorder.none),
