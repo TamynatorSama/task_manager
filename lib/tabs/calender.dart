@@ -7,17 +7,22 @@ import 'package:task/logic/db_helper.dart';
 import 'package:task/logic/task_model.dart';
 import 'package:task/reuseable/today.dart';
 
-class Calender extends StatelessWidget {
+class Calender extends StatefulWidget {
   const Calender({Key? key}) : super(key: key);
 
   @override
+  State<Calender> createState() => _CalenderState();
+}
+
+class _CalenderState extends State<Calender> {
+  @override
   Widget build(BuildContext context) {
+    
     Future<List<Task>> getTask() async {
       final taskList = await DatabaseProvider.db.getTasks();
       List<Task> todaysList = [];
       taskList.forEach((item) {
-        if (item.begin
-            .contains(DateFormat('EEE, d MMM').format(DateTime.now()))) {
+        if (item.begin.contains(DateFormat('d MMM').format(DateTime.now()))) {
           todaysList.add(item);
         }
       });
@@ -32,7 +37,7 @@ class Calender extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.25,
+                top: cont.height * 0.25,
               ),
               child: FutureBuilder(
                   future: getTask(),
@@ -41,8 +46,7 @@ class Calender extends StatelessWidget {
                       var usableList = snapshot.data as List;
                       if (usableList.isEmpty) {
                         return Padding(
-                          padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).size.height * 0.2),
+                          padding: EdgeInsets.only(top: cont.height * 0.2),
                           child: Center(
                               child: Text("You don't have any task today",
                                   style: TextStyle(
@@ -55,16 +59,21 @@ class Calender extends StatelessWidget {
                           children: List.generate(
                               usableList.length,
                               (index) => TodayCard(
-                                  color: usableList[index].color,
-                                  title: usableList[index].title,
-                                  description: usableList[index].description,
-                                  timeRange: usableList[index].begin +
-                                      " - " +
-                                      usableList[index].end,
-                                  delete: () {
-                                    DatabaseProvider.db
-                                        .delete(usableList[index].id);
-                                  })),
+                                // key: id,
+                                    color: usableList[index].color,
+                                    title: usableList[index].title,
+                                    description: usableList[index].description,
+                                    timeRange: usableList[index].begin +
+                                        " - " +
+                                        usableList[index].end,
+                                    delete: () {
+                                      DatabaseProvider.db
+                                          .delete(usableList[index].id);
+                                          setState(() {
+                                            
+                                          });
+                                    },
+                                  )),
                         );
                       }
                     } else {
@@ -90,7 +99,7 @@ class Calender extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               width: double.maxFinite,
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: cont.height * 0.25,
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.1),
               ),
@@ -101,7 +110,7 @@ class Calender extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                   weekdayStyle: TextStyle(color: Colors.black.withOpacity(0.8)),
                 ),
-                daysOfWeekHeight: MediaQuery.of(context).size.height * 0.02,
+                daysOfWeekHeight: cont.height * 0.02,
                 focusedDay: DateTime.utc(DateTime.now().year,
                     DateTime.now().month, DateTime.now().day),
                 firstDay: DateTime.utc(1972, 1, 1),
@@ -109,7 +118,7 @@ class Calender extends StatelessWidget {
                 calendarFormat: CalendarFormat.week,
                 headerStyle: HeaderStyle(
                   headerMargin: const EdgeInsets.only(bottom: 10),
-                  headerPadding: EdgeInsets.fromLTRB(0, 10, 0, 20),
+                  headerPadding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
                   leftChevronIcon: Icon(Icons.chevron_left,
                       color: Colors.black.withOpacity(0.7), size: 45),
                   rightChevronIcon: Icon(
@@ -152,3 +161,12 @@ class Calender extends StatelessWidget {
     );
   }
 }
+
+
+// 1 camera
+// 2 recorder
+// 3 cable
+// 4 storage
+// 5 power
+// 6 remote access app
+// 7 connector / mediaconverter

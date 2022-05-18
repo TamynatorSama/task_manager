@@ -3,6 +3,7 @@ import 'package:task/logic/change_to_hex.dart';
 // import 'package:flutter_svg/svg.dart';
 
 class AllTaskCard extends StatelessWidget {
+  final String? id;
   final String title;
   final String description;
   final String timeRange;
@@ -14,7 +15,8 @@ class AllTaskCard extends StatelessWidget {
     required this.title,
     required this.timeRange,
     required this.color,
-    required this.description, required this.delete,
+    required this.description,
+    required this.delete, this.id,
   }) : super(key: key);
 
   @override
@@ -64,13 +66,13 @@ class AllTaskCard extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 10),
                 child: Row(
                   children: [
-                    const Icon(Icons.timelapse_outlined,
-                        size: 15, color: Colors.grey),
+                    Icon(Icons.timelapse_outlined,
+                        size: 15, color: Colors.black.withOpacity(0.6)),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         timeRange,
-                        style: const TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
                       ),
                     ),
                   ],

@@ -109,8 +109,8 @@ class Home extends StatelessWidget {
                             },
                             //the overlay that actually display the progress
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              height: MediaQuery.of(context).size.width * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              height: MediaQuery.of(context).size.width * 0.2,
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color.fromARGB(255, 243, 202, 148)),
@@ -120,8 +120,8 @@ class Home extends StatelessWidget {
                           Center(
                             child: Container(
                               alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width * 0.18,
-                              height: MediaQuery.of(context).size.width * 0.18,
+                              width: MediaQuery.of(context).size.width * 0.15,
+                              height: MediaQuery.of(context).size.width * 0.15,
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color.fromRGBO(32, 75, 90, 1)),
@@ -150,7 +150,7 @@ class Home extends StatelessWidget {
               fontWeight: FontWeight.bold),
         ),
         Expanded(
-          child: SizedBox(
+          child: SingleChildScrollView(
             child: Wrap(
               children: [
                 const TaskCard(title: "Metting with dev", timeRange: "7:00 - 8:00"),

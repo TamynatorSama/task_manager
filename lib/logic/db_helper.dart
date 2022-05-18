@@ -3,7 +3,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:task/logic/task_model.dart';
 
-class DatabaseProvider extends ChangeNotifier {
+class DatabaseProvider{
   DatabaseProvider._();
   static final DatabaseProvider db = DatabaseProvider._();
   static Database? _database;
@@ -44,22 +44,37 @@ class DatabaseProvider extends ChangeNotifier {
         conflictAlgorithm: ConflictAlgorithm.abort);
   }
 
+  // Future<List<Task>> getTasks() async {
+  //   List<Task> taskList = [];
+  //   final db = await database;
+  //   var result = await db.query("tasks",orderBy:"id DESC");
+  //   if (result.length == 0) {
+  //     return taskList;
+  //   } else {
+  //     result.forEach((task) {
+  //       var taskeach = Task.fromJson(task);
+  //       taskList.add(taskeach);
+  //     });
+  //     notifyListeners();
+  //     return taskList;
+  //     // var resultMAp = result.toList();
+  //     // return resultMAp.isNotEmpty ? resultMAp : Null;
+  //   }
+  // }
   Future<List<Task>> getTasks() async {
-    List<Task> taskList = [];
     final db = await database;
-    var result = await db.query("tasks");
-    if (result.length == 0) {
-      return taskList;
-    } else {
-      result.forEach((task) {
-        var taskeach = Task.fromJson(task);
-        taskList.add(taskeach);
-      });
-      notifyListeners();
-      return taskList;
-      // var resultMAp = result.toList();
-      // return resultMAp.isNotEmpty ? resultMAp : Null;
-    }
+
+    List<Map<String, dynamic>> task =
+        await db.query('tasks', orderBy: 'id DESC');
+    return List.generate(
+        task.length,
+        (index) => Task(
+          id: task[index]["id"],
+            title: task[index]["title"],
+            begin: task[index]["begin"],
+            end: task[index]["end"],
+            description: task[index]["description"],
+            color: task[index]["color"]));
   }
 
   Future<void> delete(int id) async {
