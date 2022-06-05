@@ -58,8 +58,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
                   ),
                   //Time format: Space
-                  const SizedBox(
-                    width: 135,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.42,
                   ),
                   //Time format: 12hr Dropdown
                   DropdownButton(
@@ -87,12 +87,13 @@ class _SettingsPageState extends State<SettingsPage> {
             Container(
               child: Row(
                 children: [
-                  const Text("Dark Mode",
+                  const Text(
+                    "Dark Mode",
                       style: TextStyle(
                           fontSize: 20, color: Color.fromARGB(146, 0, 0, 0))),
-                  //Time format: Space
-                  const SizedBox(
-                    width: 200,
+                  //Dark mode: Space
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
                   ),
                   //Slider should be here
                   // ignore: avoid_unnecessary_containers
@@ -120,31 +121,33 @@ class _SettingsPageState extends State<SettingsPage> {
             GestureDetector(
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => const LevelPage()));
+                    .push(MaterialPageRoute(builder: (context) => 
+                    const LevelPage()
+                    ));
               },
               child: SizedBox(
                 height: 50,
                 child: Row(
-                  children: const [
+                  children: [
                     //Level color icon
-                    Icon(FontAwesome5.paint_roller,
+                    const Icon(FontAwesome5.paint_roller,
                         color: Color.fromARGB(146, 0, 0, 0)),
                     //Space behind level color
                     SizedBox(
-                      width: 20,
+                      width: MediaQuery.of(context).size.width * 0.04,
                     ),
                     //Level color text
-                    Text(
+                    const Text(
                       "Level Color",
                       style: TextStyle(
                           fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
                     ),
                     //Space in front of level color
                     SizedBox(
-                      width: 173,
+                      width: MediaQuery.of(context).size.width * 0.48,
                     ),
                     //Forward arow icon
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: Color.fromARGB(136, 241, 174, 87),
                     )
@@ -156,26 +159,26 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 50,
               child: Row(
-                children: const [
+                children: [
                   //Sound icon
-                  Icon(Icons.library_music_rounded,
+                  const Icon(Icons.library_music_rounded,
                       color: Color.fromARGB(146, 0, 0, 0)),
                   //Space behind Sound
                   SizedBox(
-                    width: 20,
+                    width: MediaQuery.of(context).size.width * 0.04,
                   ),
                   //Level color text
-                  Text(
+                  const Text(
                     "Sound",
                     style: TextStyle(
                         fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
                   ),
                   //Space in front of sound
                   SizedBox(
-                    width: 217,
-                  ),
+                      width: MediaQuery.of(context).size.width * 0.575,
+                    ),
                   //Forward arow icon
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: Color.fromARGB(136, 241, 174, 87),
                   )
@@ -186,25 +189,25 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 50,
               child: Row(
-                children: const [
+                children: [
                   //Accent Color icon
-                  Icon(Icons.color_lens, color: Color.fromARGB(146, 0, 0, 0)),
+                  const Icon(Icons.color_lens, color: Color.fromARGB(146, 0, 0, 0)),
                   //Space behind Accent Color
                   SizedBox(
-                    width: 20,
+                    width: MediaQuery.of(context).size.width * 0.04,
                   ),
                   //Accent Color text
-                  Text(
+                  const Text(
                     "Accent Color",
                     style: TextStyle(
                         fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
                   ),
-                  //Space in front of level color
+                  //Space in front of accent color
                   SizedBox(
-                    width: 157,
-                  ),
+                      width: MediaQuery.of(context).size.width * 0.5,
+                    ),
                   //Forward arow icon
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: Color.fromARGB(136, 241, 174, 87),
                   )
