@@ -120,10 +120,13 @@ class _SettingsPageState extends State<SettingsPage> {
             //Theme: Level color
             GestureDetector(
               onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => 
-                    const LevelPage()
-                    ));
+                // AlertDialog(
+
+                // );
+                // Navigator.of(context)
+                //     .push(MaterialPageRoute(builder: (context) => 
+                //     const LevelPage()
+                //     ));
               },
               child: SizedBox(
                 height: 50,
@@ -204,7 +207,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   //Space in front of accent color
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      width: MediaQuery.of(context).size.width * 0.44,
                     ),
                   //Forward arow icon
                   const Icon(
