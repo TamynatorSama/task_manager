@@ -13,8 +13,10 @@ class _LevelPageState extends State<LevelPage> {
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
-    return Container(
-      child: Text("Hello World"),
+    return Scaffold(
+      body: Container(
+        child: Text("Hello World"),
+      ),
     );
   }
 }

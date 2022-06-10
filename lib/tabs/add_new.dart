@@ -41,7 +41,7 @@ class _AddTaskState extends State<AddTask> {
             //Create a task: heading and its underline
             SizedBox(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: MediaQuery.of(context).size.height * 0.06,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class _AddTaskState extends State<AddTask> {
                           },
                           child: Image.asset(
                             "assets/images/cancel.png",
-                            scale: 2,
+                            scale: 3,
                             fit: BoxFit.contain,
                           ))
                     ],
@@ -81,45 +81,50 @@ class _AddTaskState extends State<AddTask> {
             SizedBox(
               child: Form(
                 key: _formKey,
-                child: Column(children: [
-                  Container(
-                      padding: const EdgeInsets.only(top: 20, bottom: 9),
-                      alignment: Alignment.topLeft,
-                      child: const LabelText(text: "Title")),
-                  TextFormField(
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                        letterSpacing: 2),
-                    controller: _titleController,
-                    decoration: InputDecoration(
-                      errorStyle: TextStyle(color: Colors.red.withOpacity(0.7)),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: const BorderRadius.vertical(
-                              top: Radius.circular(12),
-                              bottom: Radius.circular(12)),
-                          borderSide:
-                              BorderSide(color: Colors.red.withOpacity(0.7))),
-                      enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(12),
-                              bottom: Radius.circular(12)),
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(12),
-                              bottom: Radius.circular(12)),
-                          borderSide: BorderSide(width: 1, color: Colors.grey)),
-                    ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return "please enter Title";
-                      } else {
-                        return null;
-                      }
-                    },
-                  )
-                ]),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Column(
+                    children: [
+                    // Container(
+                    //     padding: const EdgeInsets.only(top: 20, bottom: 9),
+                    //     alignment: Alignment.topLeft,
+                    //     child: const LabelText(text: "Title")),
+                    TextFormField(
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                          letterSpacing: 2),
+                      controller: _titleController,
+                      decoration: InputDecoration(
+                        label: Text("Input Title", style: TextStyle(color: Color.fromARGB(108, 0, 0, 0)),),
+                        errorStyle: TextStyle(color: Colors.red.withOpacity(0.7)),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(12),
+                                bottom: Radius.circular(12)),
+                            borderSide:
+                                BorderSide(color: Colors.red.withOpacity(0.7))),
+                        enabledBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(12),
+                                bottom: Radius.circular(12)),
+                            borderSide: BorderSide(color: Colors.grey)),
+                        focusedBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(12),
+                                bottom: Radius.circular(12)),
+                            borderSide: BorderSide(width: 1, color: Colors.grey)),
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "please enter Title";
+                        } else {
+                          return null;
+                        }
+                      },
+                    )
+                  ]),
+                ),
               ),
             ),
 
@@ -145,25 +150,25 @@ class _AddTaskState extends State<AddTask> {
                           }),
                       Levels(
                           color: "ACACAC",
-                          level: "Level1",
+                          level: "Level 1",
                           function: () {
                             current.selectColor("ACACAC");
                           }),
                       Levels(
                           color: "D4F5C5",
-                          level: "Level2",
+                          level: "Level 2",
                           function: () {
                             current.selectColor("D4F5C5");
                           }),
                       Levels(
                           color: "C5E4F5",
-                          level: "Level3",
+                          level: "Level 3",
                           function: () {
                             current.selectColor("C5E4F5");
                           }),
                       Levels(
                           color: "F5C5C5",
-                          level: "Level4",
+                          level: "Level 4",
                           function: () {
                             current.selectColor("F5C5C5");
                           })

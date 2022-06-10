@@ -17,7 +17,6 @@ class Calender extends StatefulWidget {
 class _CalenderState extends State<Calender> {
   @override
   Widget build(BuildContext context) {
-    
     Future<List<Task>> getTask() async {
       final taskList = await DatabaseProvider.db.getTasks();
       List<Task> todaysList = [];
@@ -59,7 +58,7 @@ class _CalenderState extends State<Calender> {
                           children: List.generate(
                               usableList.length,
                               (index) => TodayCard(
-                                // key: id,
+                                    // key: id,
                                     color: usableList[index].color,
                                     title: usableList[index].title,
                                     description: usableList[index].description,
@@ -69,9 +68,7 @@ class _CalenderState extends State<Calender> {
                                     delete: () {
                                       DatabaseProvider.db
                                           .delete(usableList[index].id);
-                                          setState(() {
-                                            
-                                          });
+                                      setState(() {});
                                     },
                                   )),
                         );
@@ -80,9 +77,12 @@ class _CalenderState extends State<Calender> {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          (Center(
-                              child: Text("You don't have any task today"))),
+                        children:  [
+                          Padding(
+                            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
+                            child: (const Center(
+                                child: Text("You don't have any task today"))),
+                          ),
                         ],
                       );
                     }

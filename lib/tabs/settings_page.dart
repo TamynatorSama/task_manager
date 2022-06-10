@@ -87,8 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Container(
               child: Row(
                 children: [
-                  const Text(
-                    "Dark Mode",
+                  const Text("Dark Mode",
                       style: TextStyle(
                           fontSize: 20, color: Color.fromARGB(146, 0, 0, 0))),
                   //Dark mode: Space
@@ -120,13 +119,542 @@ class _SettingsPageState extends State<SettingsPage> {
             //Theme: Level color
             GestureDetector(
               onTap: () {
-                // AlertDialog(
-
-                // );
-                // Navigator.of(context)
-                //     .push(MaterialPageRoute(builder: (context) => 
-                //     const LevelPage()
-                //     ));
+                showDialog(
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                          scrollable: true,
+                          actions: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  bottom: 18.0, right: 35),
+                              child: GestureDetector(
+                                  onTap: () => Navigator.of(context).pop(),
+                                  child: const Text("Done")),
+                            )
+                          ],
+                          content: SingleChildScrollView(
+                              child: Column(
+                            children: [
+                              //Level 1
+                              SizedBox(
+                                // color: Colors.amber,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.085,
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 8.0),
+                                      child: Text("Level 1"),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              //Level 2
+                              SizedBox(
+                                // color: Colors.amber,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.085,
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 8.0),
+                                      child: Text("Level 2"),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              //Level 3
+                              SizedBox(
+                                // color: Colors.amber,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.085,
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 8.0),
+                                      child: Text("Level 3"),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              //Level 4
+                              SizedBox(
+                                // color: Colors.amber,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.085,
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 8.0),
+                                      child: Text("Level 4"),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              //Default
+                              SizedBox(
+                                // color: Colors.amber,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.085,
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 8.0),
+                                      child: Text("Default"),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 18),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24)),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.07),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )),
+                          title: const Text("Level Color"),
+                        ));
               },
               child: SizedBox(
                 height: 50,
@@ -159,62 +687,191 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             //Theme: Sound
-            SizedBox(
-              height: 50,
-              child: Row(
-                children: [
-                  //Sound icon
-                  const Icon(Icons.library_music_rounded,
-                      color: Color.fromARGB(146, 0, 0, 0)),
-                  //Space behind Sound
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.04,
-                  ),
-                  //Level color text
-                  const Text(
-                    "Sound",
-                    style: TextStyle(
-                        fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
-                  ),
-                  //Space in front of sound
-                  SizedBox(
+            GestureDetector(
+              onTap: () => {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                          actions: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                right: 20,
+                                bottom: 15,
+                              ),
+                              child: GestureDetector(
+                                onTap: () => Navigator.pop(context),
+                                child: const Text("Done"),
+                              ),
+                            )
+                          ],
+                          scrollable: true,
+                          content: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                GestureDetector(
+                                  child: const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 15.0),
+                                    child: Text("Sound 1"),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  child: const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 15.0),
+                                    child: Text("Sound 2"),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  child: const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 15.0),
+                                    child: Text("Sound 3"),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  child: const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 15.0),
+                                    child: Text("Sound 4"),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  child: const Padding(
+                                    padding: EdgeInsets.only(top: 15.0),
+                                    child: Text("Sound 5"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ))
+              },
+              child: SizedBox(
+                height: 50,
+                child: Row(
+                  children: [
+                    //Sound icon
+                    const Icon(Icons.library_music_rounded,
+                        color: Color.fromARGB(146, 0, 0, 0)),
+                    //Space behind Sound
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                    //Level color text
+                    const Text(
+                      "Sound",
+                      style: TextStyle(
+                          fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
+                    ),
+                    //Space in front of sound
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.575,
                     ),
-                  //Forward arow icon
-                  const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Color.fromARGB(136, 241, 174, 87),
-                  )
-                ],
+                    //Forward arow icon
+                    const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Color.fromARGB(136, 241, 174, 87),
+                    )
+                  ],
+                ),
               ),
             ),
             //Theme: Accent Color
-            SizedBox(
-              height: 50,
-              child: Row(
-                children: [
-                  //Accent Color icon
-                  const Icon(Icons.color_lens, color: Color.fromARGB(146, 0, 0, 0)),
-                  //Space behind Accent Color
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.04,
-                  ),
-                  //Accent Color text
-                  const Text(
-                    "Accent Color",
-                    style: TextStyle(
-                        fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
-                  ),
-                  //Space in front of accent color
-                  SizedBox(
+            GestureDetector(
+              onTap: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                        actions: [
+                          GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: Padding(padding: EdgeInsets.only(right: 20, bottom: 10),
+                            child: Text("Done"),),
+                          )
+                        ],
+                        scrollable: true,
+                        content: SingleChildScrollView(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  margin: const EdgeInsets.only(right: 18),
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(24)),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.04,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.07),
+                              Container(
+                                  margin: const EdgeInsets.only(right: 18),
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(24)),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.04,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.07),
+                              Container(
+                                  margin: const EdgeInsets.only(right: 18),
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(24)),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.04,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.07),
+                              Container(
+                                  margin: const EdgeInsets.only(right: 18),
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(24)),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.04,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.07),
+                              Container(
+                                  margin: const EdgeInsets.only(right: 18),
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(24)),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.04,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.07),
+                            ],
+                          ),
+                        ),
+                      )),
+              child: SizedBox(
+                height: 50,
+                child: Row(
+                  children: [
+                    //Accent Color icon
+                    const Icon(Icons.color_lens,
+                        color: Color.fromARGB(146, 0, 0, 0)),
+                    //Space behind Accent Color
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                    //Accent Color text
+                    const Text(
+                      "Accent Color",
+                      style: TextStyle(
+                          fontSize: 20, color: Color.fromARGB(146, 0, 0, 0)),
+                    ),
+                    //Space in front of accent color
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.44,
                     ),
-                  //Forward arow icon
-                  const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Color.fromARGB(136, 241, 174, 87),
-                  )
-                ],
+                    //Forward arow icon
+                    const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Color.fromARGB(136, 241, 174, 87),
+                    )
+                  ],
+                ),
               ),
             ),
             //Space above contact
@@ -303,6 +960,5 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       )),
     );
-    
   }
 }
